@@ -5,8 +5,8 @@ A Rails application for managing customers and sending SMS messages using Twilio
 ## Features
 
 - **Customers**: Full CRUD operations for managing customer information.
-- **Message Templates**: Create, update, delete, and list message templates with placeholders for customer data.
-- **Messages**: Send SMS messages using Twilio, with support for templates and recent message checks.
+- **Message Templates**: Create, update, delete, and list message templates with placeholders for customer data, supporting multiple languages (primary and English).
+- **Messages**: Send SMS messages using Twilio, with support for templates, recent message checks, and language selection based on customer phone number.
 - **Credentials Management**: Secure storage and retrieval of sensitive information using Rails encrypted credentials.
 
 ## Getting Started
@@ -23,7 +23,7 @@ A Rails application for managing customers and sending SMS messages using Twilio
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/notifier.git
+   git clone https://github.com/guilhermecostacw/notifier.git
    cd notifier
    ```
 
