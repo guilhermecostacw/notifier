@@ -7,4 +7,10 @@ class MessageTemplate < ApplicationRecord
            .gsub('{{phone}}', customer.phone)
            .gsub('{{email}}', customer.email)
   end
+
+  def fill_template_en(customer)
+    content_en.gsub('{{name}}', customer.name)
+              .gsub('{{phone}}', customer.phone)
+              .gsub('{{email}}', customer.email)
+  end
 end

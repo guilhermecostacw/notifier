@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     if @customer.save
       render json: @customer, status: :created
     else
-      render json: @customer.errors, status: :unprocessable_entity
+      render json: @customer.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
     if @customer.update(customer_params)
       render json: @customer
     else
-      render json: @customer.errors, status: :unprocessable_entity
+      render json: @customer.errors.full_messages, status: :unprocessable_entity
     end
   end
 

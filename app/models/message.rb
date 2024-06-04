@@ -6,7 +6,18 @@ class Message < ApplicationRecord
 
   attr_accessor :bypass_check
 
+  # The message content can be either a custom message or a message template.
+  validates :customer, presence: true
+  validates :content, presence: true, if: -> { message_template_id.nil? }
+  validate :valid_message_template, if: -> { message_template_id.present? }
+
   private
+
+  def valid_message_template
+    return if MessageTemplate.exists?(id: message_template_id)
+
+    errors.add(:message_template, 'is not valid')
+  end
 
   def send_sms
     Message.transaction do
@@ -34,15 +45,22 @@ class Message < ApplicationRecord
     end
   end
 
-  # Prepares the content of the message by filling in the message template with customer data.
   def prepare_message_content
     return unless message_template
 
-    self.content = message_template.fill_template(customer)
+    self.content = select_template_content
   end
 
-  # Checks if there are any recent messages sent by the customer.
-  # If a message was sent within the last 24 hours, it raises an error.
+  # Select the template content based on the customer's phone number and the template's language.
+  def select_template_content
+    if customer.phone.start_with?('+1') && message_template.content_en.present?
+      message_template.fill_template_en(customer)
+    else
+      message_template.fill_template(customer)
+    end
+  end
+
+  # Check if the customer has sent a message in the last 24 hours.
   def check_recent_messages
     return if bypass_check
 
