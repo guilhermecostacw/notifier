@@ -3,6 +3,7 @@ class Message < ApplicationRecord
   belongs_to :message_template, optional: true
 
   before_create :check_recent_messages, :prepare_message_content, :send_sms
+  after_create :increment_message_counter
 
   attr_accessor :bypass_check
 
@@ -69,5 +70,17 @@ class Message < ApplicationRecord
 
     errors.add(:base, 'Cannot send more than one message within 24 hours')
     throw(:abort)
+  end
+
+  # Prometheus metric to count the number of messages sent.
+  def increment_message_counter
+    client = PrometheusExporter::Client.default
+    client.send_json(
+      type: 'counter',
+      name: 'sent_messages',
+      help: 'Total number of messages sent',
+      value: 1,
+      custom_labels: { service: 'notifier' }
+    )
   end
 end

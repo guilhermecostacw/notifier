@@ -18,6 +18,9 @@ gem 'puma', '~> 5.0'
 gem 'devise'
 gem 'twilio-ruby'
 
+# Prometheus
+gem 'prometheus_exporter'
+
 # Swagger
 gem 'rswag-api'
 gem 'rswag-specs'
@@ -46,5 +49,4 @@ group :development do
   gem 'spring'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

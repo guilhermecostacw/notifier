@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: notifier_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - app_network
+
+  web:
+    build: .
+    command: bash -c "bundle exec rails db:create db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000"
+    volumes:
+      - ".:/app"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - prometheus_client
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/notifier_development
+      RAILS_ENV: development
+      PROMETHEUS_EXPORTER_HOST: prometheus_client
+      PROMETHEUS_EXPORTER_PORT: 9394
+    networks:
+      - app_network
+
+  prometheus_exporter:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - app_network
+
+  prometheus_client:
+    build: .
+    command: bundle exec prometheus_exporter -b 0.0.0.0 -p 9394
+    ports:
+      - "9394:9394"
+    environment:
+      RAILS_ENV: development
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
