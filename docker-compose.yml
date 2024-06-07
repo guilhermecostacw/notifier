@@ -10,6 +10,8 @@ services:
       - "5433:5432"
     networks:
       - app_network
+    volumes:
+      - db_data:/var/lib/postgresql/data
 
   web:
     build: .
@@ -51,3 +53,6 @@ services:
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  db_data:

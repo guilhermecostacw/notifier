@@ -1,7 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "Customers", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+RSpec.describe 'Customers', type: :request do
+  describe 'GET /index' do
+    it 'returns a success response' do
+      get customers_path
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to be_an_instance_of(Array)
+    end
   end
 end

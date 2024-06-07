@@ -1,5 +1,7 @@
 require 'rails_helper'
 require 'webmock/rspec'
+require 'prometheus_exporter'
+require 'prometheus_exporter/client'
 
 RSpec.describe Message, type: :model do
   let(:customer) { Customer.create(name: 'John Doe', email: 'john.doe@example.com', phone: '+15555555555') }
@@ -9,6 +11,8 @@ RSpec.describe Message, type: :model do
 
   before do
     stub_request(:post, /api.twilio.com/).to_return(body: { sid: '12345', status: 'queued' }.to_json, status: 200)
+    allow(PrometheusExporter::Client).to receive(:default).and_return(double('PrometheusExporter::Client',
+                                                                             send_json: true))
   end
 
   describe 'validations' do

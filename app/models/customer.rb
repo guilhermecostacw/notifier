@@ -5,6 +5,11 @@ class Customer < ApplicationRecord
   validates :phone, presence: true
   validate  :valid_phone_number
 
+  def first_name
+    name.split.first
+  end
+
+  # Check if the phone number is a valid Brazilian or American phone number.
   def valid_phone_number
     return if phone.blank?
 
