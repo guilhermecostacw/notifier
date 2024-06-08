@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/controllers/customers_controller.rb": {
+      "/app/app/controllers/customers_controller.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          2,
-          2,
+          1,
+          1,
           null,
           null,
           1,
@@ -49,20 +49,20 @@
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/controllers/application_controller.rb": {
+      "/app/app/controllers/application_controller.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/controllers/message_templates_controller.rb": {
+      "/app/app/controllers/message_templates_controller.rb": {
         "lines": [
           1,
           1,
           null,
           1,
-          2,
-          2,
+          1,
+          1,
           null,
           null,
           1,
@@ -103,12 +103,12 @@
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/controllers/messages_controller.rb": {
+      "/app/app/controllers/messages_controller.rb": {
         "lines": [
           1,
           1,
-          2,
-          2,
+          1,
+          1,
           null,
           null,
           1,
@@ -128,7 +128,7 @@
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/models/customer.rb": {
+      "/app/app/models/customer.rb": {
         "lines": [
           1,
           1,
@@ -152,7 +152,7 @@
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/models/message.rb": {
+      "/app/app/models/message.rb": {
         "lines": [
           1,
           1,
@@ -242,7 +242,7 @@
           null
         ]
       },
-      "/home/guilhermecosta/PROJECTS/THE ONE/notifier/app/models/message_template.rb": {
+      "/app/app/models/message_template.rb": {
         "lines": [
           1,
           1,
@@ -265,6 +265,6 @@
         ]
       }
     },
-    "timestamp": 1717734725
+    "timestamp": 1717737243
   }
 }
