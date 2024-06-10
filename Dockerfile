@@ -19,6 +19,8 @@ RUN bundle install
 # Copy the rest of the application code into the working directory
 COPY . /app
 
+RUN chmod 644 /app/prometheus.yml
+
 # Expose port 3000 to the Docker host
 EXPOSE 3000
 

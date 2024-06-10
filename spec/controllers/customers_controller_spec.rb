@@ -7,7 +7,7 @@ RSpec.describe CustomersController, type: :controller do
     it 'returns a success response' do
       get :index
       expect(response).to be_successful
-      expect(JSON.parse(response.body).length).to eq(1)
+      expect(JSON.parse(response.body).length).to eq(Customer.count)
     end
   end
 
