@@ -80,6 +80,9 @@ Create Customer
 ```
 
 Create Template
+
+- You can extract customer's data to fill the template message using "{{param}}". available params: (name, first_name, email, phone)
+
 ```json
    {
   "message_template": {
