@@ -39,6 +39,6 @@ class MessageTemplatesController < ApplicationController
   end
 
   def message_template_params
-    params.require(:message_template).permit(:name, :content)
+    params.require(:message_template).permit(:name, :content, :content_en)
   end
 end
