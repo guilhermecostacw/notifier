@@ -8,6 +8,8 @@ A Rails application for managing customers and sending SMS messages using Twilio
 - **Message Templates**: Create, update, delete, and list message templates with placeholders for customer data, supporting multiple languages (primary and English).
 - **Messages**: Send SMS messages using Twilio, with support for templates, recent message checks, and language selection based on customer phone number.
 - **Credentials Management**: Secure storage and retrieval of sensitive information using Rails encrypted credentials.
+- **Prometheus Instrumentation**: Monitor application metrics with Prometheus for enhanced observability and performance tracking.
+- **Test Coverage**: Includes a suite of tests to ensure the correctness and reliability of its features.
 
 ## Getting Started
 
@@ -100,6 +102,28 @@ Create Message
   }
 }
 ```
+
+### Prometheus Instrumentation
+#### Running Prometheus
+Prometheus is included as a service in the Docker Compose setup. It is configured to scrape metrics from the Rails application and itself.
+
+To access the Prometheus dashboard, navigate to http://localhost:9090.
+
+#### Custom Metrics
+The application is instrumented to expose custom metrics using the prometheus_exporter gem. These metrics include:
+
+HTTP Request Metrics: Metrics related to the HTTP requests, such as response times and statuses.
+Database Metrics: Metrics related to database queries and their performance.
+Custom Application Metrics: Any other custom metrics defined in the application code.
+
+#### Accessing Metrics
+Metrics can be accessed at the /metrics endpoint of the application. This endpoint is exposed on the Prometheus exporter port (default: 9394).
+
+To see the metrics, navigate to http://localhost:9394/metrics.
+
+Usage
+Once Prometheus is up and running, you can use it to create dashboards, set up alerts, and analyze the performance of your Rails application.
+
 
 
 ## Environment Variables
